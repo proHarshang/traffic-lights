@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { Ways } from "../types";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -15,13 +14,22 @@ import {
 import ConfigureSignalTimes from "@/components/ConfigureSignalTimes";
 import RoadLayout from "@/components/RoadLayout";
 import EmergencyButton from "@/components/EmergencyButton";
+import { useTrafficLight } from "@/hooks/useTrafficLight";
+import { useState } from "react";
 
-const TrafficSignalsPage = () => {
-  const [way, setWay] = useState<Ways>("3-way");
+
+const TrafficSignalsPage = () => {  
+  const [refreshKey, setRefreshKey] = useState(0);
+  const { way, setWay, reset } = useTrafficLight();
+
+  
+  const handleSave = () => {
+    setRefreshKey((prevKey) => prevKey + 1); // Increment key to trigger re-render
+  };
 
   return (
-    <div>
-      <RoadLayout way={way} />
+    <div key={refreshKey}>
+      <RoadLayout />
       <EmergencyButton />
       <Card className="w-fit fixed my-10 mx-auto bottom-0 left-1/2 -translate-x-1/2">
         <CardContent className="flex gap-4">
@@ -39,8 +47,8 @@ const TrafficSignalsPage = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <ConfigureSignalTimes way={way} />
-          <Button variant={"secondary"}>Reset</Button>
+          <ConfigureSignalTimes way={way} onSave={handleSave}/>
+          <Button variant={"secondary"} onClick={reset}>Reset</Button>
         </CardContent>
       </Card>
     </div>
