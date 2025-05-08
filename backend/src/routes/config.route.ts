@@ -11,8 +11,8 @@ const router = express.Router();
 
 router.post("/", createConfig);
 router.get("/", getAllConfigs);
-router.get("/:id", getConfigById);
-router.put("/:id", updateConfig);
+router.get("/:intersectionType", getConfigById);
+router.put("/", updateConfig);
 router.delete("/:id", deleteConfig);
 
 export default router;

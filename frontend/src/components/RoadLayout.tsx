@@ -32,7 +32,7 @@ const RoadLayout = ({ way }: RoadLayoutProps) => {
     const fetchConfig = async () => {
       try {
         setLoading(true);
-        const result = await api.get("/config");        
+        const result = await api.get("/config");
 
         const filtered = result.data.find((d: ConfigResult) => d.intersectionType === way);
         setConfig(filtered.config);
@@ -49,7 +49,7 @@ const RoadLayout = ({ way }: RoadLayoutProps) => {
 
   useEffect(() => {
     if (loading) return;
-    
+
     let timer: ReturnType<typeof setTimeout>;
     let countdown: ReturnType<typeof setTimeout>;
     const signalEntries = Object.entries(config);

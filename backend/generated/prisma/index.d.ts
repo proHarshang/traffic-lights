@@ -2002,14 +2002,14 @@ export namespace Prisma {
 
   export type SignalConfigWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    intersectionType?: string
     AND?: SignalConfigWhereInput | SignalConfigWhereInput[]
     OR?: SignalConfigWhereInput[]
     NOT?: SignalConfigWhereInput | SignalConfigWhereInput[]
-    intersectionType?: StringFilter<"SignalConfig"> | string
     config?: JsonFilter<"SignalConfig">
     createdAt?: DateTimeFilter<"SignalConfig"> | Date | string
     updatedAt?: DateTimeFilter<"SignalConfig"> | Date | string
-  }, "id">
+  }, "id" | "intersectionType">
 
   export type SignalConfigOrderByWithAggregationInput = {
     id?: SortOrder

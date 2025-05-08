@@ -10,8 +10,8 @@ datasource db {
 
 model SignalConfig {
   id               String   @id @default(uuid())
-  intersectionType String // e.g., "3-way", "4-way-type1", "5-way"
-  config           Json // stores durations for each signal
+  intersectionType String   @unique // "3-way" | "4-way-type1" | "4-way-type2" | "5-way"
+  config           Json // duratons for each signal
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }

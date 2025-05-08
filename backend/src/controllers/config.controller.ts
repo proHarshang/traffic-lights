@@ -22,21 +22,29 @@ export const getAllConfigs = async (_: Request, res: Response) => {
 };
 
 export const getConfigById = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const config = await prisma.signalConfig.findUnique({ where: { id } });
-  if (!config) {
-    res.status(404).json({ error: "Not found" });
+  const { intersectionType } = req.params;
+  try {
+    const config = await prisma.signalConfig.findUnique({
+      where: { intersectionType },
+    });
+
+    if (!config) {
+      res.status(404).json({ error: "Configuration not found" });
+    }
+
+    res.json(config);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch configuration" });
   }
-  res.json(config);
 };
 
 export const updateConfig = async (req: Request, res: Response) => {
-  const { id } = req.params;
   const { intersectionType, config } = req.body;
   try {
     const updated = await prisma.signalConfig.update({
-      where: { id },
-      data: { intersectionType, config },
+      where: { intersectionType },
+      data: { config },
     });
     res.json(updated);
   } catch {
