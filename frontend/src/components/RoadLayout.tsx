@@ -89,7 +89,7 @@ const RoadLayout = ({ way }: RoadLayoutProps) => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="grid grid-cols-2 gap-4 p-4">
+    <div className="grid grid-cols-2 justify-items-center gap-4 p-4">
       {Object.entries(config).map(([key], index) => {
         const color = getColor(index, activeSignal, timeLeft, isEmergency);
         return (
