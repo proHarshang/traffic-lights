@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model SignalConfig {
+  id               String   @id @default(uuid())
+  intersectionType String // e.g., "3-way", "4-way-type1", "5-way"
+  config           Json // stores durations for each signal
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
