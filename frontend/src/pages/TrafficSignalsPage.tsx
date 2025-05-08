@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import ConfigureSignalTimes from "@/components/ConfigureSignalTimes";
 import RoadLayout from "@/components/RoadLayout";
+import EmergencyButton from "@/components/EmergencyButton";
 
 const TrafficSignalsPage = () => {
   const [way, setWay] = useState<Ways>("3-way");
@@ -21,9 +22,7 @@ const TrafficSignalsPage = () => {
   return (
     <div>
       <RoadLayout way={way} />
-      <Button variant={"outline"} className="fixed m-10 top-0 right-0">
-        Emergency
-      </Button>
+      <EmergencyButton />
       <Card className="w-fit fixed my-10 mx-auto bottom-0 left-1/2 -translate-x-1/2">
         <CardContent className="flex gap-4">
           <Select onValueChange={(e) => setWay(e as Ways)} value={way}>
