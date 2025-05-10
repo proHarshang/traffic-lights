@@ -10,10 +10,11 @@ const TrafficLight = ({ color, timeLeft }: TrafficLightProps) => {
 
   return (
     <div className="bg-black rounded-xl flex flex-col items-center gap-3 h-fit w-fit p-4 justify-evenly">
-      {["green", "orange", "red"].map((c) => {
+      {[["green","bg-green-500"], ["orange","bg-orange-500"], ["red", "bg-red-500"]].map((c) => {
+        console.log(c);  
         return (
-          <div key={c} className={`rounded-full aspect-square size-7 bg-${c}-500 ${color === c ? "" : "opacity-50"}`}>
-            {timeLeft && color === c ? (isEmergency ? emergencyTimeLeft : timeLeft) : null}
+          <div key={c[0]} className={`rounded-full aspect-square size-7 ${c[1]} ${color === c[0] ? "" : "opacity-50"}`}>
+            {timeLeft && color === c[0] ? (isEmergency ? emergencyTimeLeft : timeLeft) : null}
           </div>
         );
       })}
